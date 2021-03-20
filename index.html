@@ -56,29 +56,29 @@
 
 <ul>
 <li>Anything in the <code>master</code> branch is deployable</li>
-<li>To work on something new, create a descriptively named branch off of <code>master</code> (ie: <code>new-oauth2-scopes</code>)</li>
+<li>To work on something new, create a descriptively named branch off of <code>main</code> (ie: <code>new-oauth2-scopes</code>)</li>
 <li>Commit to that branch locally and regularly push your work to the same named branch on the server</li>
 <li>When you need feedback or help, or you think the branch is ready for merging, open a <a href="http://help.github.com/send-pull-requests/">pull request</a>
 </li>
-<li>After someone else has reviewed and signed off on the feature, you can merge it into master</li>
-<li>Once it is merged and pushed to 'master', you can and <em>should</em> deploy immediately</li>
+<li>After someone else has reviewed and signed off on the feature, you can merge it into main</li>
+<li>Once it is merged and pushed to 'main', you can and <em>should</em> deploy immediately</li>
 </ul><p>That is the entire flow.  It is very simple, very effective and works for fairly large teams - GitHub is 35 employees now, maybe 15-20 of whom work on the same project (github.com) at the same time.  I think that most development teams - groups that work on the same logical code at the same time which could produce conflicts - are around this size or smaller.  Especially those that are progressive enough to be doing rapid and consistent deployments.</p>
 
 <p>So, let's look at each of these steps in turn.</p>
 
 <h4>
-<a name="1---anything-in-the-master-branch-is-deployable" class="anchor" href="#1---anything-in-the-master-branch-is-deployable"><span class="octicon octicon-link"></span></a>#1 - anything in the master branch is deployable</h4>
+<a name="1---anything-in-the-main-branch-is-deployable" class="anchor" href="#1---anything-in-the-main-branch-is-deployable"><span class="octicon octicon-link"></span></a>#1 - anything in the main branch is deployable</h4>
 
 <p>This is basically the only hard <em>rule</em> of the system. There is only one branch that has any specific and consistent meaning and we named it <code>master</code>.  To us, this means that it has been deployed or at the worst will be deployed within hours.  It's incredibly rare that this gets rewound (the branch is moved back to an older commit to revert work) - if there is an issue, commits will be reverted or new commits will be introduced that fixes the issue, but the branch itself is almost never rolled back.</p>
 
-<p>The <code>master</code> branch is stable and it is always, always safe to deploy from it or create new branches off of it.  If you push something to master that is not tested or breaks the build, you break the social contract of the development team and you normally feel pretty bad about it.  Every branch we push has tests run on it and reported into the chat room, so if you haven't run them locally, you can simply push to a topic branch (even a branch with a single commit) on the server and wait for <a href="http://jenkins-ci.org/">Jenkins</a> to tell you if it passes everything.</p>
+<p>The <code>main</code> branch is stable and it is always, always safe to deploy from it or create new branches off of it.  If you push something to main that is not tested or breaks the build, you break the social contract of the development team and you normally feel pretty bad about it.  Every branch we push has tests run on it and reported into the chat room, so if you haven't run them locally, you can simply push to a topic branch (even a branch with a single commit) on the server and wait for <a href="http://jenkins-ci.org/">Jenkins</a> to tell you if it passes everything.</p>
 
 <p>You could have a <code>deployed</code> branch that is updated only when you deploy, but we don't do that.  We simply expose the currently deployed SHA through the webapp itself and <code>curl</code> it if we need a comparison made.</p>
 
 <h4>
-<a name="2---create-descriptive-branches-off-of-master" class="anchor" href="#2---create-descriptive-branches-off-of-master"><span class="octicon octicon-link"></span></a>#2 - create descriptive branches off of master</h4>
+<a name="2---create-descriptive-branches-off-of-main" class="anchor" href="#2---create-descriptive-branches-off-of-main"><span class="octicon octicon-link"></span></a>#2 - create descriptive branches off of main</h4>
 
-<p>When you want to start work on anything, you create a descriptively named branch off of the stable <code>master</code> branch.  Some examples in the GitHub codebase right now would be <code>user-content-cache-key</code>, <code>submodules-init-task</code> or <code>redis2-transition</code>.  This has several advantages - one is that when you fetch, you can see the topics that everyone else has been working on.  Another is that if you abandon a branch for a while and go back to it later, it's fairly easy to remember what it was.</p>
+<p>When you want to start work on anything, you create a descriptively named branch off of the stable <code>main</code> branch.  Some examples in the GitHub codebase right now would be <code>user-content-cache-key</code>, <code>submodules-init-task</code> or <code>redis2-transition</code>.  This has several advantages - one is that when you fetch, you can see the topics that everyone else has been working on.  Another is that if you abandon a branch for a while and go back to it later, it's fairly easy to remember what it was.</p>
 
 <p>This is nice because when we go to the GitHub branch list page we can easily see what branches have been worked on recently and roughly how much work they have on them.  </p>
 
@@ -91,7 +91,7 @@
 <h4>
 <a name="3---push-to-named-branches-constantly" class="anchor" href="#3---push-to-named-branches-constantly"><span class="octicon octicon-link"></span></a>#3 - push to named branches constantly</h4>
 
-<p>Another big difference from git-flow is that we push to named branches on the server constantly.  Since the only thing we really have to worry about is <code>master</code> from a deployment standpoint, pushing to the server doesn't mess anyone up or confuse things - everything that is not <code>master</code> is simply something being worked on.</p>
+<p>Another big difference from git-flow is that we push to named branches on the server constantly.  Since the only thing we really have to worry about is <code>main</code> from a deployment standpoint, pushing to the server doesn't mess anyone up or confuse things - everything that is not <code>main</code> is simply something being worked on.</p>
 
 <p>It also make sure that our work is always backed up in case of laptop loss or hard drive failure. More importantly, it puts everyone in constant communication.  A simple 'git fetch' will basically give you a TODO list of what every is currently working on.</p>
 
@@ -137,25 +137,25 @@ From github.com:github/github
 <p>This is cool because the Pull Request feature let's you comment on individual lines in the unified diff, on single commits or on the pull request itself and pulls everything inline to a single conversation view.
 It also let you continue to push to the branch, so if someone comments that you forgot to do something or there is a bug in the code, you can fix it and push to the branch, GitHub will show the new commits in the conversation view and you can keep iterating on a branch like that.</p>
 
-<p>If the branch has been open for too long and you feel it's getting out of sync with the master branch, you can merge master into your topic branch and keep going.  You can easily see in the pull request discussion or commit list when the branch was last brought up to date with the 'master'.</p>
+<p>If the branch has been open for too long and you feel it's getting out of sync with the main branch, you can merge main into your topic branch and keep going.  You can easily see in the pull request discussion or commit list when the branch was last brought up to date with the 'main'.</p>
 
-<p><img src="https://img.skitch.com/20110831-q5dwhwk3dut7mdqm2kp7qwqu67.png" alt="master merge"></p>
+<p><img src="https://img.skitch.com/20110831-q5dwhwk3dut7mdqm2kp7qwqu67.png" alt="main merge"></p>
 
 <p>When everything is really and truly done on the branch and you feel it's ready to deploy, you can move on to the next step.</p>
 
 <h4>
 <a name="5---merge-only-after-pull-request-review" class="anchor" href="#5---merge-only-after-pull-request-review"><span class="octicon octicon-link"></span></a>#5 - merge only after pull request review</h4>
 
-<p>We don't simply do work directly on <code>master</code> or work on a topic branch and merge it in when we think it's done - we try to get signoff from someone else in the company.  This is generally a +1 or emoji or "<img class="emoji" title=":shipit:" alt=":shipit:" src="https://github.global.ssl.fastly.net/images/icons/emoji/shipit.png" height="20" width="20" align="absmiddle">" comment, but we try to get someone else to look at it.</p>
+<p>We don't simply do work directly on <code>main</code> or work on a topic branch and merge it in when we think it's done - we try to get signoff from someone else in the company.  This is generally a +1 or emoji or "<img class="emoji" title=":shipit:" alt=":shipit:" src="https://github.global.ssl.fastly.net/images/icons/emoji/shipit.png" height="20" width="20" align="absmiddle">" comment, but we try to get someone else to look at it.</p>
 
 <p><img src="https://img.skitch.com/20110831-8gg3uhb14adjis43wa6swiinik.png" alt="shipit comment"></p>
 
-<p>Once we get that, and the branch passes CI, we can merge it into master for deployment, which will automatically close the Pull Request when we push it.</p>
+<p>Once we get that, and the branch passes CI, we can merge it into main for deployment, which will automatically close the Pull Request when we push it.</p>
 
 <h4>
 <a name="6---deploy-immediately-after-review" class="anchor" href="#6---deploy-immediately-after-review"><span class="octicon octicon-link"></span></a>#6 - deploy immediately after review</h4>
 
-<p>Finally, your work is done and merged into the <code>master</code> branch.  This means that even if you don't deploy it now, people will base new work off of it and the next deploy, which will likely happen in a few hours, will push it out.  So since you really don't want someone else to push something that you wrote that breaks things, people tend to make sure that it really is stable when it's merged and people also tend to push their own changes.</p>
+<p>Finally, your work is done and merged into the <code>main</code> branch.  This means that even if you don't deploy it now, people will base new work off of it and the next deploy, which will likely happen in a few hours, will push it out.  So since you really don't want someone else to push something that you wrote that breaks things, people tend to make sure that it really is stable when it's merged and people also tend to push their own changes.</p>
 
 <p>Our campfire bot, hubot, can do deployments for any of the employees, so a simple:</p>
 

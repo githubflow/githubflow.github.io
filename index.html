@@ -82,7 +82,7 @@
 
 <p>This is nice because when we go to the GitHub branch list page we can easily see what branches have been worked on recently and roughly how much work they have on them.  </p>
 
-<p><img src="https://img.skitch.com/20110831-x5nyqid885aqnp7t2au5ckw929.png" alt="github branch list"></p>
+<p><img src="images/github_branch_list.png" alt="github branch list"></p>
 
 <p>It's almost like a list of upcoming features with current rough status. This page is awesome if you're not using it - it only shows you branches that have unique work on them relative to your currently selected branch and it sorts them so that the ones most recently worked on are at the top. If I get really curious, I can click on the 'Compare' button to see what the actual unified diff and commit list is that is unique to that branch.</p>
 
@@ -124,11 +124,11 @@ From github.com:github/github
 
 <p>Actually, we use it more as a branch conversation view more than a pull request. You can send pull requests from one branch to another in a single project (public or private) in GitHub, so you can use them to say "I need help or review on this" in addition to "Please merge this in".</p>
 
-<p><img src="https://img.skitch.com/20110831-1mft7b5nbxrcghasbi9hkbs84s.png" alt="early pr message"></p>
+<p><img src="images/early_pr_message.png" alt="early pr message"></p>
 
 <p>Here you can see Josh cc'ing Brian for review and Brian coming in with some advice on one of the lines of code.  Further down we can see Josh acknowledging Brian's concerns and pushing more code to address them.</p>
 
-<p><img src="https://img.skitch.com/20110831-j181q96hh7k8x2e1iuh38jsc8a.png" alt="more discussion"></p>
+<p><img src="images/more_discussion.png" alt="more discussion"></p>
 
 <p>Finally you can see that we're still in the trial phase - this is not a deployment ready branch yet, we use the Pull Requests to review the code long before we actually want to merge it into <code>master</code> for deployment.</p>
 
@@ -139,16 +139,16 @@ It also let you continue to push to the branch, so if someone comments that you 
 
 <p>If the branch has been open for too long and you feel it's getting out of sync with the master branch, you can merge master into your topic branch and keep going.  You can easily see in the pull request discussion or commit list when the branch was last brought up to date with the 'master'.</p>
 
-<p><img src="https://img.skitch.com/20110831-q5dwhwk3dut7mdqm2kp7qwqu67.png" alt="master merge"></p>
+<p><img src="images/master_merge.png" alt="master merge"></ p>
 
 <p>When everything is really and truly done on the branch and you feel it's ready to deploy, you can move on to the next step.</p>
 
 <h4>
 <a name="5---merge-only-after-pull-request-review" class="anchor" href="#5---merge-only-after-pull-request-review"><span class="octicon octicon-link"></span></a>#5 - merge only after pull request review</h4>
 
-<p>We don't simply do work directly on <code>master</code> or work on a topic branch and merge it in when we think it's done - we try to get signoff from someone else in the company.  This is generally a +1 or emoji or "<img class="emoji" title=":shipit:" alt=":shipit:" src="https://github.global.ssl.fastly.net/images/icons/emoji/shipit.png" height="20" width="20" align="absmiddle">" comment, but we try to get someone else to look at it.</p>
+<p>We don't simply do work directly on <code>master</code> or work on a topic branch and merge it in when we think it's done - we try to get signoff from someone else in the company.  This is generally a +1 or emoji or "<img class="emoji" title=":shipit:" alt=":shipit:" src="images/shipit.png" height="20" width="20" align="absmiddle">" comment, but we try to get someone else to look at it.</p>
 
-<p><img src="https://img.skitch.com/20110831-8gg3uhb14adjis43wa6swiinik.png" alt="shipit comment"></p>
+<p><img src="images/shipit_comment.png" alt="shipit comment"></p>
 
 <p>Once we get that, and the branch passes CI, we can merge it into master for deployment, which will automatically close the Pull Request when we push it.</p>
 
@@ -164,7 +164,7 @@ It also let you continue to push to the branch, so if someone comments that you 
 
 <p>will deploy the code and zero-downtime restart all the necessary processes. You can see how common this is at GitHub:</p>
 
-<p><img src="https://img.skitch.com/20110831-jcmx5qktw5beabq7q1rcpj1k6c.png" alt="our campfire logs"></p>
+<p><img src="images/our_campfire_logs.png" alt="our campfire logs"></p>
 
 <p>You can see 6 different people (including a support guy and a designer) deploying about 24 times in one day.</p>
 
